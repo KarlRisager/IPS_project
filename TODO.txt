@@ -13,36 +13,36 @@ TASK 1
     Part A
                                             Status              Responsible (Karl or Andreas)
     Implement in lexer:                                     
-        - Multiplication                    None
-        - Division                          None
-        - Bool and                          None
-        - Bool or                           None
-        - Bool True                         None
-        - Bool False                        None
-        - Bool negation                     None
-        - Int negation                      None
+        - Multiplication                    None                Karl
+        - Division                          None                Karl
+        - Bool and                          None                Karl
+        - Bool or                           None                Karl
+        - Bool True                         None                Karl
+        - Bool False                        None                Karl
+        - Bool negation                     None                Karl
+        - Int negation                      None                Karl
 
 
     Implement in parser:
-        - Multiplication                    None
-        - Division                          None
-        - Bool and                          None
-        - Bool or                           None
-        - Bool True                         None
-        - Bool False                        None
-        - Bool negation                     None
-        - Int negation                      None
+        - Multiplication                    None                Karl
+        - Division                          None                Karl
+        - Bool and                          None                Karl
+        - Bool or                           None                Karl
+        - Bool True                         None                Karl
+        - Bool False                        None                Karl
+        - Bool negation                     None                Karl
+        - Int negation                      None                Karl
 
 
     Implement in interpreter:
-        - Multiplication                    None
-        - Division                          None
-        - Bool and                          None
-        - Bool or                           None
-        - Bool True                         None
-        - Bool False                        None
-        - Bool negation                     None
-        - Int negation                      None
+        - Multiplication                    None                Karl
+        - Division                          None                Karl
+        - Bool and                          None                Karl
+        - Bool or                           None                Karl
+        - Bool True                         None                Karl
+        - Bool False                        None                Karl
+        - Bool negation                     None                Karl
+        - Int negation                      None                Karl
 
 
     Implement in Type checker:
@@ -72,36 +72,36 @@ TASK 1
         - Multiple-declaration lets         None
 
 
-TASK 2
+TASK 2                                          
 
     Implement in lexer:
         - replicate                         None
-        - filter                            None
+        - filter                            None                Andreas
         - scan                              None                                     
 
 
     Implement in parser:
         - replicate                         None
-        - filter                            None
-        - scan                              None   
+        - filter                            None                Andreas
+        - scan                              None         
 
 
     Implement in interpreter:
         - replicate                         None
-        - filter                            None
-        - scan                              None   
+        - filter                            None                Andreas
+        - scan                              None         
 
 
     Implement in Type checker:
         - replicate                         None
-        - filter                            None
-        - scan                              None   
+        - filter                            None                Andreas
+        - scan                              None          
 
 
     Implement in RISC-V code generator:
         - replicate                         None
-        - filter                            None
-        - scan                              None   
+        - filter                            None                Andreas
+        - scan                              None           
 
 
 
