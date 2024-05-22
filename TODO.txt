@@ -13,10 +13,10 @@ TASK 1
     Part A
                                             Status              Responsible (Karl or Andreas)
     Implement in lexer:                                     
-        - Multiplication                    None                Karl
-        - Division                          None                Karl
-        - Bool and                          None                Karl
-        - Bool or                           None                Karl
+        - Multiplication                    Finished            Karl
+        - Division                          Finished            Karl
+        - Bool and                          Finished            Karl
+        - Bool or                           Finished            Karl
         - Bool True                         None                Karl
         - Bool False                        None                Karl
         - Bool negation                     None                Karl
@@ -24,10 +24,10 @@ TASK 1
 
 
     Implement in parser:
-        - Multiplication                    None                Karl
-        - Division                          None                Karl
-        - Bool and                          None                Karl
-        - Bool or                           None                Karl
+        - Multiplication                    Finished            Karl
+        - Division                          Finished            Karl
+        - Bool and                          Finished            Karl
+        - Bool or                           Finished            Karl
         - Bool True                         None                Karl
         - Bool False                        None                Karl
         - Bool negation                     None                Karl
@@ -117,3 +117,18 @@ TASK 4 (BONUS)
 
 
 TESTING
+
+
+
+
+
+
+
+
+
+
+
+
+
+NOTES
+    - How does stronger binding / precedence occur? How to implement in Parser.fsp. Idea how early in Exp definition                     Karl 

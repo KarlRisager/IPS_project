@@ -102,6 +102,8 @@ rule Token = parse
                           }
   | '+'                   { Parser.PLUS   (getPos lexbuf) }
   | '-'                   { Parser.MINUS  (getPos lexbuf) }
+  | '*'                   { Parser.TIMES  (getPos lexbuf) } (*Added to support multiplication*)
+  | '/'                   { Parser.DIVIDE (getPos lexbuf) } (*Added to support multiplication*)
   | "=>"                  { Parser.ARROW  (getPos lexbuf) }
   | "=="                  { Parser.DEQ    (getPos lexbuf) }
   | '='                   { Parser.EQ     (getPos lexbuf) }
