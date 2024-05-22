@@ -1,0 +1,116 @@
+
+
+
+
+
+
+
+TASK 1
+
+    Part A
+                                            Status              Responsible (Karl or Andreas)
+    Implement in lexer:                                     
+        - Multiplication                    None
+        - Division                          None
+        - Bool and                          None
+        - Bool or                           None
+        - Bool True                         None
+        - Bool False                        None
+        - Bool negation                     None
+        - Int negation                      None
+
+
+    Implement in parser:
+        - Multiplication                    None
+        - Division                          None
+        - Bool and                          None
+        - Bool or                           None
+        - Bool True                         None
+        - Bool False                        None
+        - Bool negation                     None
+        - Int negation                      None
+
+
+    Implement in interpreter:
+        - Multiplication                    None
+        - Division                          None
+        - Bool and                          None
+        - Bool or                           None
+        - Bool True                         None
+        - Bool False                        None
+        - Bool negation                     None
+        - Int negation                      None
+
+
+    Implement in Type checker:
+        - Multiplication                    None
+        - Division                          None
+        - Bool and                          None
+        - Bool or                           None
+        - Bool True                         None
+        - Bool False                        None
+        - Bool negation                     None
+        - Int negation                      None
+
+
+    Implement in RISC-V code generator:
+        - Multiplication                    None
+        - Division                          None
+        - Bool and                          None
+        - Bool or                           None
+        - Bool True                         None
+        - Bool False                        None
+        - Bool negation                     None
+        - Int negation                      None
+
+    Part B
+    
+    Implement in parser and  lexer:
+        - Multiple-declaration lets         None
+
+
+TASK 2
+
+    Implement in lexer:
+        - replicate                         None
+        - filter                            None
+        - scan                              None                                     
+
+
+    Implement in parser:
+        - replicate                         None
+        - filter                            None
+        - scan                              None   
+
+
+    Implement in interpreter:
+        - replicate                         None
+        - filter                            None
+        - scan                              None   
+
+
+    Implement in Type checker:
+        - replicate                         None
+        - filter                            None
+        - scan                              None   
+
+
+    Implement in RISC-V code generator:
+        - replicate                         None
+        - filter                            None
+        - scan                              None   
+
+
+
+TASK 3
+
+
+
+
+TASK 4 (BONUS)
+
+
+
+
+
+TESTING
