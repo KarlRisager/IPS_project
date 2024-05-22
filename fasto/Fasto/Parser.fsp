@@ -36,20 +36,23 @@ let parse_error_rich =
 //   TODO: project task 4: array comprehension 
 //////////////////////////////////////////////////////////////////////
 
+(*Added tokens for BOOLLIT, AND, OR, NOT, TIMES, DIVIDE*)
 //information-carrying tokens
 %token <int * Position> NUM
 %token <char * Position> CHARLIT
+%token <bool * Position> BOOLLIT
 %token <string * Position> ID STRINGLIT
 //keywords
 %token <Position> BOOL CHAR ELSE FN FUN IF IN INT LET THEN TRUE
 //specials
 %token <Position> IOTA LENGTH MAP READ REDUCE WRITE
 //symbols
-%token <Position> AND OR
+%token <Position> AND OR NOT
 %token <Position> MINUS PLUS DEQ LTH TIMES DIVIDE
 %token <Position> COMMA SEMICOLON EQ ARROW LPAR RPAR LBRACKET RBRACKET
 %token <Position> LCURLY RCURLY EOF
 
+(*Added left associativity for TIMES, DIVIDE, AND and OR*)
 %nonassoc ELSE IN
 %left DEQ LTH
 %left PLUS MINUS
@@ -97,8 +100,9 @@ Params : Type ID COMMA Params
 //       add grammer rules for the new expressions
 ///////////////////////////////////////////////////////
 
-Exp : NUM            { Constant (IntVal (fst $1), snd $1) }
+Exp : NUM            { Constant (IntVal (fst $1), snd $1)  }
     | CHARLIT        { Constant (CharVal (fst $1), snd $1) }
+    | BOOLLIT         { Constant (BoolVal (fst $1), snd $1) } (*Added to support boolean Called BOOLLIT to avoid interferance with type BOOL*)
     | ID             { Var $1 }
     | STRINGLIT      { StringLit $1 }
     | LCURLY Exps RCURLY
@@ -110,6 +114,7 @@ Exp : NUM            { Constant (IntVal (fst $1), snd $1) }
     
     | Exp DEQ   Exp  { Equal($1, $3, $2) }
     | Exp LTH   Exp  { Less ($1, $3, $2) }
+    | NOT Exp        { Not ($2, $1)      } (*Added to support logical negation Not sure in precedesn over comparison, and if $1 $2 instead of $2 $1*)
     | Exp AND   Exp  { And  ($1, $3, $2) } (*Added to support boolean and*)
     | Exp OR    Exp  { Or   ($1, $3, $2) } (*Added to support boolean or*)
     | IF Exp THEN Exp ELSE Exp

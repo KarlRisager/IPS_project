@@ -11,26 +11,26 @@
 TASK 1
 
     Part A
-                                            Status              Responsible (Karl or Andreas)
+                                            Status              Responsible (Karl or Andreas)          Tested
     Implement in lexer:                                     
-        - Multiplication                    Finished            Karl
-        - Division                          Finished            Karl
-        - Bool and                          Finished            Karl
-        - Bool or                           Finished            Karl
-        - Bool True                         None                Karl
-        - Bool False                        None                Karl
-        - Bool negation                     None                Karl
+        - Multiplication                    Finished            Karl                                   False                                    
+        - Division                          Finished            Karl                                   False
+        - Bool and                          Finished            Karl                                   False
+        - Bool or                           Finished            Karl                                   False
+        - Bool True                         Finished            Karl                                   False
+        - Bool False                        Finished            Karl                                   False
+        - Bool negation                     Finished            Karl                                   False
         - Int negation                      None                Karl
 
 
     Implement in parser:
-        - Multiplication                    Finished            Karl
-        - Division                          Finished            Karl
-        - Bool and                          Finished            Karl
-        - Bool or                           Finished            Karl
-        - Bool True                         None                Karl
-        - Bool False                        None                Karl
-        - Bool negation                     None                Karl
+        - Multiplication                    Finished            Karl                                   False
+        - Division                          Finished            Karl                                   False
+        - Bool and                          Finished            Karl                                   False
+        - Bool or                           Finished            Karl                                   False
+        - Bool True                         Finished            Karl                                   False
+        - Bool False                        Finished            Karl                                   False
+        - Bool negation                     Finished            Karl                                   False
         - Int negation                      None                Karl
 
 
