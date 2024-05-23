@@ -87,10 +87,10 @@ rule Token = parse
                                   , getPos lexbuf )
                               }
   (*Added to lex boolean literals*)
-  | 'true'|'false' { Parser.BOOLLIT
+  (*| "true"|"false" { Parser.BOOLLIT
                                   ( bool (Encoding.UTF8.GetString(lexbuf.Lexeme))
                                   , getPos lexbuf )
-                              }
+                              }*)
   | ['a'-'z' 'A'-'Z']['a'-'z' 'A'-'Z' '0'-'9' '_']*
                           { keyword ( Encoding.UTF8.GetString(lexbuf.Lexeme)
                                     , getPos lexbuf ) }
@@ -110,8 +110,8 @@ rule Token = parse
   | '-'                   { Parser.MINUS  (getPos lexbuf) }
   | '*'                   { Parser.TIMES  (getPos lexbuf) } (*Added to support multiplication*)
   | '/'                   { Parser.DIVIDE (getPos lexbuf) } (*Added to support multiplication*)
-  | '&&'                  { Parser.AND    (getPos lexbuf) } (*Added to support boolean and*)
-  | '||'                  { Parser.OR     (getPos lexbuf) } (*Added to support boolean or*)
+  | "&&"                  { Parser.AND    (getPos lexbuf) } (*Added to support boolean and*)
+  | "||"                  { Parser.OR     (getPos lexbuf) } (*Added to support boolean or*)
   | "=>"                  { Parser.ARROW  (getPos lexbuf) }
   | "=="                  { Parser.DEQ    (getPos lexbuf) }
   | '='                   { Parser.EQ     (getPos lexbuf) }

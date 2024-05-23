@@ -36,7 +36,7 @@ let parse_error_rich =
 //   TODO: project task 4: array comprehension 
 //////////////////////////////////////////////////////////////////////
 
-(*Added tokens for BOOLLIT, AND, OR, NOT, TIMES, DIVIDE*)
+//Added tokens for BOOLLIT, AND, OR, NOT, TIMES, DIVIDE
 //information-carrying tokens
 %token <int * Position> NUM
 %token <char * Position> CHARLIT
@@ -52,7 +52,7 @@ let parse_error_rich =
 %token <Position> COMMA SEMICOLON EQ ARROW LPAR RPAR LBRACKET RBRACKET
 %token <Position> LCURLY RCURLY EOF
 
-(*Added left associativity for TIMES, DIVIDE, AND and OR*)
+//(*Added left associativity for TIMES, DIVIDE, AND and OR*)
 %nonassoc ELSE IN
 %left DEQ LTH
 %left PLUS MINUS
@@ -102,21 +102,21 @@ Params : Type ID COMMA Params
 
 Exp : NUM            { Constant (IntVal (fst $1), snd $1)  }
     | CHARLIT        { Constant (CharVal (fst $1), snd $1) }
-    | BOOLLIT         { Constant (BoolVal (fst $1), snd $1) } (*Added to support boolean Called BOOLLIT to avoid interferance with type BOOL*)
+    | BOOLLIT         { Constant (BoolVal (fst $1), snd $1) } // Added to support boolean Called BOOLLIT to avoid interferance with type BOOL
     | ID             { Var $1 }
     | STRINGLIT      { StringLit $1 }
     | LCURLY Exps RCURLY
                      { ArrayLit ($2, (), $1) }
-    | Exp TIMES Exp  { Times($1, $3, $2) } (*Added to support multiplication*)
-    | Exp DIVIDE Exp { Divide($1, $3, $2)} (*Added to support multiplication*)
+    | Exp TIMES Exp  { Times($1, $3, $2) } //(*Added to support multiplication*)
+    | Exp DIVIDE Exp { Divide($1, $3, $2)} //(*Added to support multiplication*)
     | Exp PLUS  Exp  { Plus ($1, $3, $2) }
     | Exp MINUS Exp  { Minus($1, $3, $2) }
     
     | Exp DEQ   Exp  { Equal($1, $3, $2) }
     | Exp LTH   Exp  { Less ($1, $3, $2) }
-    | NOT Exp        { Not ($2, $1)      } (*Added to support logical negation Not sure in precedesn over comparison, and if $1 $2 instead of $2 $1*)
-    | Exp AND   Exp  { And  ($1, $3, $2) } (*Added to support boolean and*)
-    | Exp OR    Exp  { Or   ($1, $3, $2) } (*Added to support boolean or*)
+    | NOT Exp        { Not ($2, $1)      } //(*Added to support logical negation Not sure in precedesn over comparison, and if $1 $2 instead of $2 $1*)
+    | Exp AND   Exp  { And  ($1, $3, $2) } //(*Added to support boolean and*)
+    | Exp OR    Exp  { Or   ($1, $3, $2) } //(*Added to support boolean or*)
     | IF Exp THEN Exp ELSE Exp
                      { If ($2, $4, $6, $1) }
     | ID LPAR Exps RPAR
