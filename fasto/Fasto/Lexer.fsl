@@ -87,10 +87,8 @@ rule Token = parse
                                   , getPos lexbuf )
                               }
   (*Added to lex boolean literals*)
-  (*| "true"|"false" { Parser.BOOLLIT
-                                  ( bool (Encoding.UTF8.GetString(lexbuf.Lexeme))
-                                  , getPos lexbuf )
-                              }*)
+  | "true" { Parser.BOOLLIT ( true, getPos lexbuf )}
+  | "false" { Parser.BOOLLIT ( false, getPos lexbuf)}
   | ['a'-'z' 'A'-'Z']['a'-'z' 'A'-'Z' '0'-'9' '_']*
                           { keyword ( Encoding.UTF8.GetString(lexbuf.Lexeme)
                                     , getPos lexbuf ) }

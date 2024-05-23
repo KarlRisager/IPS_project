@@ -162,12 +162,42 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
             | (IntVal _, _) -> reportWrongType "right operand of /" Int res2 (expPos e2)
             | (_, _) -> reportWrongType "left operand of /" Int res1 (expPos e1)
 
-  | And (_, _, _) ->
-        failwith "Unimplemented interpretation of &&"
-  | Or (_, _, _) ->
-        failwith "Unimplemented interpretation of ||"
-  | Not(_, _) ->
-        failwith "Unimplemented interpretation of not"
+  | And (e1, e2, pos) ->
+        let res1   = evalExp(e1, vtab, ftab)
+        match res1 with
+            | BoolVal false -> BoolVal false
+            | BoolVal true ->
+                  let res2   = evalExp(e2, vtab, ftab)
+                  match res2 with
+                        | BoolVal false -> BoolVal false
+                        | BoolVal true  -> BoolVal true
+                        | _ -> reportWrongType "right operand of &&" Bool res2 (expPos e2)
+            | _ -> reportWrongType "left operand of &&" Bool res1 (expPos e1)
+
+  | Or (e1, e2, pos) ->
+        let res1   = evalExp(e1, vtab, ftab)
+        match res1 with
+            | BoolVal true -> BoolVal true
+            | BoolVal false ->
+                  let res2   = evalExp(e2, vtab, ftab)
+                  match res2 with
+                        | BoolVal false -> BoolVal false
+                        | BoolVal true  -> BoolVal true
+                        | _ -> reportWrongType "right operand of ||" Bool res2 (expPos e2)
+            | _ -> reportWrongType "left operand of ||" Bool res1 (expPos e1)
+
+        //failwith "Unimplemented interpretation of ||"
+  | Not(e, pos) ->
+        let res = evalExp(e, vtab, ftab)
+        match res with
+            | BoolVal true -> BoolVal false
+            | BoolVal false -> BoolVal true
+            | _ -> reportWrongType "operand of not" Bool res (expPos e)
+        //failwith "Unimplemented interpretation of not"
+
+
+
+
   | Negate(_, _) ->
         failwith "Unimplemented interpretation of negate"
   | Equal(e1, e2, pos) ->
