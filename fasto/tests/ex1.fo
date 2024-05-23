@@ -1,2 +1,2 @@
-fun bool main() = //this is a comment
-  write(not 10)
+fun int main() = //this is a comment
+  write((0-3)+2)
