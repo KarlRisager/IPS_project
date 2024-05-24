@@ -1,2 +1,2 @@
 fun int main() = //this is a comment
-  write((0-3)+2)
+  write(1+2)

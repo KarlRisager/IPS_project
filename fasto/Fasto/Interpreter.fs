@@ -157,7 +157,7 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
         let res1   = evalExp(e1, vtab, ftab)
         let res2   = evalExp(e2, vtab, ftab)
         match (res1, res2) with
-            | (_,IntVal 0) -> raise (MyError("Division by 0 not allowed", pos))
+            | (_,IntVal 0) -> raise (MyError("Division by 0", pos))
             | (IntVal n1, IntVal n2) -> IntVal (n1/n2)
             | (IntVal _, _) -> reportWrongType "right operand of /" Int res2 (expPos e2)
             | (_, _) -> reportWrongType "left operand of /" Int res1 (expPos e1)
@@ -198,8 +198,12 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
 
 
 
-  | Negate(_, _) ->
-        failwith "Unimplemented interpretation of negate"
+  | Negate(e, pos) ->
+        let res = evalExp(e, vtab, ftab)
+        match res with
+            | IntVal n -> IntVal (0-n)
+            | _ -> reportWrongType "operand of ~" Int res (expPos e)
+        //failwith "Unimplemented interpretation of negate"
   | Equal(e1, e2, pos) ->
         let r1 = evalExp(e1, vtab, ftab)
         let r2 = evalExp(e2, vtab, ftab)

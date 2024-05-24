@@ -1,13 +1,4 @@
 
-
-
-
-
-
-
-
-
-
 TASK 1
 
     Part A
@@ -20,7 +11,7 @@ TASK 1
         - Bool True                         Finished            Karl                                   True
         - Bool False                        Finished            Karl                                   True
         - Bool negation                     Finished            Karl                                   True
-        - Int negation                      None                Karl
+        - Int negation                      Finished            Karl                                   True
 
 
     Implement in parser:
@@ -31,7 +22,7 @@ TASK 1
         - Bool True                         Finished            Karl                                   True
         - Bool False                        Finished            Karl                                   True
         - Bool negation                     Finished            Karl                                   True
-        - Int negation                      None                Karl
+        - Int negation                      Finished            Karl                                   True
 
 
     Implement in interpreter:
@@ -42,7 +33,7 @@ TASK 1
         - Bool True                         Finished            Karl                                   True
         - Bool False                        Finished            Karl                                   True
         - Bool negation                     Finished            Karl                                   True
-        - Int negation                      None                Karl
+        - Int negation                      Finished            Karl                                   True
 
 
     Implement in Type checker:
@@ -69,7 +60,7 @@ TASK 1
     Part B
     
     Implement in parser and  lexer:
-        - Multiple-declaration lets         None
+        - Multiple-declaration lets         Started             Karl                                   False
 
 
 TASK 2                                          

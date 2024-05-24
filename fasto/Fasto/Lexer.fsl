@@ -106,6 +106,7 @@ rule Token = parse
                           }
   | '+'                   { Parser.PLUS   (getPos lexbuf) }
   | '-'                   { Parser.MINUS  (getPos lexbuf) }
+  | '~'                   { Parser.NEGATE (getPos lexbuf) } (*Added to support integer negation*)
   | '*'                   { Parser.TIMES  (getPos lexbuf) } (*Added to support multiplication*)
   | '/'                   { Parser.DIVIDE (getPos lexbuf) } (*Added to support multiplication*)
   | "&&"                  { Parser.AND    (getPos lexbuf) } (*Added to support boolean and*)
