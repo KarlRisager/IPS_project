@@ -60,7 +60,7 @@ TASK 1
     Part B
     
     Implement in parser and  lexer:
-        - Multiple-declaration lets         Started             Karl                                   False
+        - Multiple-declaration lets         Finished            Karl                                   True (Only doubt about pos)
 
 
 TASK 2                                          
