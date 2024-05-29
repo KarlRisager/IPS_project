@@ -358,16 +358,23 @@ let rec compileExp  (e      : TypedExp)
       let t2 = newReg "and_R"
       let code1 = compileExp e1 vtable t1
       let falseLabel = newLab "false"
+      let endLabel = newLab "end"
       let code2 = compileExp e2 vtable t2
-      code1 @ [ BEQ (t1, Rzero, falseLabel) ] @ code2 @ [ LABEL falseLabel; MV (place, Rzero) ]
+      code1 @
+      [ BEQ (t1, Rzero, falseLabel) ] @ code2 @ [ BEQ (t2, Rzero, falseLabel) ] @ 
+      [ LI (place, 1); J endLabel ] @  [ LABEL falseLabel; LI (place, 0) ] @ [ LABEL endLabel ]    
 
   | Or (e1, e2, pos) ->
       let t1 = newReg "or_L"
       let t2 = newReg "or_R"
       let code1 = compileExp e1 vtable t1
       let trueLabel = newLab "true"
+      let endLabel = newLab "end"
       let code2 = compileExp e2 vtable t2
-      code1 @ [ BNE (t1, Rzero, trueLabel) ] @ code2 @ [ LABEL trueLabel; MV (place, Rzero) ]
+      code1 @
+      [ BNE (t1, Rzero, trueLabel) ] @ code2 @
+      [ BNE (t2, Rzero, trueLabel) ] @ [ LI (place, 0); J endLabel ] @  
+      [ LABEL trueLabel; LI (place, 1) ] @ [ LABEL endLabel ]  
 
   (* Indexing:
      1. generate code to compute the index
