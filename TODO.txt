@@ -98,14 +98,14 @@ TASK 2
 
 TASK 3
 
-    Finnish in  CopyConstPropFold.fs
-        - variable
+    Implement in  CopyConstPropFold.fs
+        - variable                          Finished            Karl                                   False
         - array index (???)
         - let binding
         - multiplication                    Finished            Karl                                   False
         - logical and                       Finished            Karl                                   False
 
-    Finnish in DeadBindingRemoval.fs
+    Implement in DeadBindingRemoval.fs
         - variable                          Finished            Karl                                   False
         - array index (???)                 Finished            Karl                                   False
         - let binding                       Finished            Karl                                   False
