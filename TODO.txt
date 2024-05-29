@@ -98,6 +98,20 @@ TASK 2
 
 TASK 3
 
+    Finnish in  CopyConstPropFold.fs
+        - variable
+        - array index (???)
+        - let binding
+        - multiplication                    Finished            Karl                                   False
+        - logical and                       Finished            Karl                                   False
+
+    Finnish in DeadBindingRemoval.fs
+        - variable
+        - array index (???)
+        - let binding
+
+
+
 
 
 
@@ -123,3 +137,6 @@ TESTING
 
 NOTES
     - How does stronger binding / precedence occur? How to implement in Parser.fsp. Idea how early in Exp definition                     Karl 
+
+
+
