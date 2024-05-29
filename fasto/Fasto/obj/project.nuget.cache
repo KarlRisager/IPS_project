@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "0o/s5cFXtfzUjWfakRc6S73Xp5w2qnQhbFVuElBJylyT6EF3eT3kctKUCGlPQGX7wY3NMa6vDVX5HJyCjbdhXw==",
+  "dgSpecHash": "wKR+Qq6S3bs=",
   "success": true,
-  "projectFilePath": "D:\\User Docs\\GitHub\\IPS_project\\fasto\\Fasto\\Fasto.fsproj",
+  "projectFilePath": "/mnt/c/Studiet/6. semester/IPS/Final_project/IPS_project/fasto/Fasto/Fasto.fsproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Andreas\\.nuget\\packages\\fsharp.core\\8.0.200\\fsharp.core.8.0.200.nupkg.sha512",
-    "C:\\Users\\Andreas\\.nuget\\packages\\fslexyacc\\11.2.0\\fslexyacc.11.2.0.nupkg.sha512",
-    "C:\\Users\\Andreas\\.nuget\\packages\\fslexyacc.runtime\\11.2.0\\fslexyacc.runtime.11.2.0.nupkg.sha512"
+    "/home/karl/.nuget/packages/fsharp.core/8.0.300/fsharp.core.8.0.300.nupkg.sha512",
+    "/home/karl/.nuget/packages/fslexyacc/11.2.0/fslexyacc.11.2.0.nupkg.sha512",
+    "/home/karl/.nuget/packages/fslexyacc.runtime/11.2.0/fslexyacc.runtime.11.2.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -37,25 +37,25 @@ TASK 1
 
 
     Implement in Type checker:
-        - Multiplication                    None
-        - Division                          None
-        - Bool and                          None
-        - Bool or                           None
-        - Bool True                         None
-        - Bool False                        None
-        - Bool negation                     None
-        - Int negation                      None
+        - Multiplication                    Finished            Karl                                   False
+        - Division                          Finished            Karl                                   False
+        - Bool and                          Finished            Karl                                   False
+        - Bool or                           Finished            Karl                                   False
+        - Bool True                         None(Maybe already implemented)
+        - Bool False                        None(Maybe already implemented)
+        - Bool negation                     Finished            Karl                                   False
+        - Int negation                      Finished            Karl                                   False
 
 
     Implement in RISC-V code generator:
-        - Multiplication                    None
-        - Division                          None
-        - Bool and                          None
-        - Bool or                           None
-        - Bool True                         None
-        - Bool False                        None
-        - Bool negation                     None
-        - Int negation                      None
+        - Multiplication                    Finished            Karl                                   False
+        - Division                          Finished            Karl                                   False
+        - Bool and                          Finished            Karl                                   False
+        - Bool or                           Finished            Karl                                   False
+        - Bool True                         Finished            Karl                                   False
+        - Bool False                        Finished            Karl                                   False
+        - Bool negation                     Finished            Karl                                   False
+        - Int negation                      Finished            Karl                                   False
 
     Part B
     

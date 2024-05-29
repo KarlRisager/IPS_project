@@ -135,19 +135,44 @@ and checkExp  (ftab : FunTable)
         //failwith "Unimplemented type check of multiplication"
 
     | Divide (e1, e2, pos) ->
-        failwith "Unimplemented type check of division" 
+        let (e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Int, e1, e2)
+        match e1 with
+          | Constant (IntVal 0, pos) -> reportError "Division by zero" pos
+          | _ -> ()
+        (Int, Divide (e1_dec, e2_dec, pos))
+        //failwith "Unimplemented type check of division" 
 
-    | And (_, _, _) ->
-        failwith "Unimplemented type check of &&"
+    | And (e1, e2, pos) ->
+        let  (t1, e1') = checkExp ftab vtab e1
+        let  (t2, e2') = checkExp ftab vtab e2
+        if t1 <> Bool then
+            reportTypeWrong "1st argument of &&" Bool t1 pos
+        if t2 <> Bool then
+            reportTypeWrong "2nd argument of &&" Bool t2 pos
+        (Bool, And (e1', e2', pos))
+        //failwith "Unimplemented type check of &&"
 
-    | Or (_, _, _) ->
-        failwith "Unimplemented type check of ||"
+    | Or (e1, e2, pos) ->
+        let  (t1, e1') = checkExp ftab vtab e1
+        let  (t2, e2') = checkExp ftab vtab e2
+        if t1 <> Bool then
+            reportTypeWrong "1st argument of ||" Bool t1 pos
+        if t2 <> Bool then
+            reportTypeWrong "2nd argument of ||" Bool t2 pos
+        (Bool, Or (e1', e2', pos))
+        //failwith "Unimplemented type check of ||"
 
-    | Not (_, _) ->
-        failwith "Unimplemented type check of not"
+    | Not (e, pos) ->
+        let (t, e') = checkExp ftab vtab e
+        if t <> Bool then
+            reportTypeWrong "argument of not" Bool t pos
+        (Bool, Not (e', pos))
 
-    | Negate (_, _) ->
-        failwith "Unimplemented type check of negate"
+    | Negate (e, pos) ->
+        let (t, e') = checkExp ftab vtab e
+        if t <> Int then
+            reportTypeWrong "argument of negate" Int t pos
+        (Int, Negate (e', pos))
 
     (* The types for e1, e2 must be the same. The result is always a Bool. *)
     | Equal (e1, e2, pos) ->

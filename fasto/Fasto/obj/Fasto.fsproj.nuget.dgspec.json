@@ -1,26 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "D:\\User Docs\\GitHub\\IPS_project\\fasto\\Fasto\\Fasto.fsproj": {}
+    "/mnt/c/Studiet/6. semester/IPS/Final_project/IPS_project/fasto/Fasto/Fasto.fsproj": {}
   },
   "projects": {
-    "D:\\User Docs\\GitHub\\IPS_project\\fasto\\Fasto\\Fasto.fsproj": {
+    "/mnt/c/Studiet/6. semester/IPS/Final_project/IPS_project/fasto/Fasto/Fasto.fsproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\User Docs\\GitHub\\IPS_project\\fasto\\Fasto\\Fasto.fsproj",
+        "projectUniqueName": "/mnt/c/Studiet/6. semester/IPS/Final_project/IPS_project/fasto/Fasto/Fasto.fsproj",
         "projectName": "Fasto",
-        "projectPath": "D:\\User Docs\\GitHub\\IPS_project\\fasto\\Fasto\\Fasto.fsproj",
-        "packagesPath": "C:\\Users\\Andreas\\.nuget\\packages\\",
-        "outputPath": "D:\\User Docs\\GitHub\\IPS_project\\fasto\\Fasto\\obj\\",
+        "projectPath": "/mnt/c/Studiet/6. semester/IPS/Final_project/IPS_project/fasto/Fasto/Fasto.fsproj",
+        "packagesPath": "/home/karl/.nuget/packages/",
+        "outputPath": "/mnt/c/Studiet/6. semester/IPS/Final_project/IPS_project/fasto/Fasto/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Andreas\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/karl/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
-          "C:\\Program Files\\dotnet\\sdk\\8.0.204\\FSharp\\library-packs": {},
+          "/snap/dotnet-sdk/245/sdk/8.0.300/FSharp/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -42,7 +42,7 @@
             "FSharp.Core": {
               "include": "Runtime, Compile, Build, Native, Analyzers, BuildTransitive",
               "target": "Package",
-              "version": "[8.0.200, )",
+              "version": "[8.0.300, )",
               "generatePathProperty": true
             },
             "FsLexYacc": {
@@ -67,7 +67,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.204/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/snap/dotnet-sdk/245/sdk/8.0.300/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
