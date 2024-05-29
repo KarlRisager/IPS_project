@@ -107,8 +107,8 @@ TASK 3
 
     Finnish in DeadBindingRemoval.fs
         - variable                          Finished            Karl                                   False
-        - array index (???)
-        - let binding
+        - array index (???)                 Finished            Karl                                   False
+        - let binding                       Finished            Karl                                   False
 
 
 
