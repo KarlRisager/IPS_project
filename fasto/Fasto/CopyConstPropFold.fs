@@ -22,10 +22,6 @@ let rec copyConstPropFoldExp (vtable : VarTable)
         (* Copy propagation is handled entirely in the following three
         cases for variables, array indexing, and let-bindings. *)
         | Var (name, pos) ->
-            match SymTab.lookup name vtable with
-                |  Some (Constant c) ->
-                    constant c
-                | _ -> Var (name, pos)
             (* TODO project task 3: NOT Done
                 Should probably look in the symbol table to see if
                 a binding corresponding to the current variable `name`

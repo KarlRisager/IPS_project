@@ -106,7 +106,7 @@ TASK 3
         - logical and                       Finished            Karl                                   False
 
     Finnish in DeadBindingRemoval.fs
-        - variable
+        - variable                          Finished            Karl                                   False
         - array index (???)
         - let binding
 
