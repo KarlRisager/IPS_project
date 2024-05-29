@@ -100,8 +100,8 @@ TASK 3
 
     Implement in  CopyConstPropFold.fs
         - variable                          Finished            Karl                                   False
-        - array index (???)
-        - let binding
+        - array index (???)                 Finished            Karl                                   False
+        - let binding                       Finished            Karl                                   False
         - multiplication                    Finished            Karl                                   False
         - logical and                       Finished            Karl                                   False
 
