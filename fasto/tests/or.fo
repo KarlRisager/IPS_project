@@ -1,0 +1,5 @@
+fun bool main() =
+    if ( (false || true) && (true || false) && not (false || false) && (true || true) && not (false && true || false)) then
+        write(true)
+    else
+        write(false)

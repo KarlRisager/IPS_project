@@ -132,15 +132,15 @@ and checkExp  (ftab : FunTable)
     | Times (e1, e2, pos) ->
         let (e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Int, e1, e2)
         (Int, Times (e1_dec, e2_dec, pos))
-        //failwith "Unimplemented type check of multiplication"
+
 
     | Divide (e1, e2, pos) ->
         let (e1_dec, e2_dec) = checkBinOp ftab vtab (pos, Int, e1, e2)
-        match e1 with
+        match e2 with
           | Constant (IntVal 0, pos) -> reportError "Division by zero" pos
           | _ -> ()
         (Int, Divide (e1_dec, e2_dec, pos))
-        //failwith "Unimplemented type check of division" 
+
 
     | And (e1, e2, pos) ->
         let  (t1, e1') = checkExp ftab vtab e1
@@ -150,7 +150,7 @@ and checkExp  (ftab : FunTable)
         if t2 <> Bool then
             reportTypeWrong "2nd argument of &&" Bool t2 pos
         (Bool, And (e1', e2', pos))
-        //failwith "Unimplemented type check of &&"
+
 
     | Or (e1, e2, pos) ->
         let  (t1, e1') = checkExp ftab vtab e1
@@ -160,7 +160,7 @@ and checkExp  (ftab : FunTable)
         if t2 <> Bool then
             reportTypeWrong "2nd argument of ||" Bool t2 pos
         (Bool, Or (e1', e2', pos))
-        //failwith "Unimplemented type check of ||"
+
 
     | Not (e, pos) ->
         let (t, e') = checkExp ftab vtab e

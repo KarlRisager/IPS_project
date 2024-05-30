@@ -169,8 +169,10 @@ let rec compileExp  (e      : TypedExp)
       [ LI (place, n) ] (* assembler will generate appropriate
                            instruction sequence for any value n *)
   | Constant (BoolVal p, _) ->
+      let int_val = if p then 1 else 0 in
+      [ LI (place, int_val) ] 
       (* TODO project task 1: represent `true`/`false` values as `1`/`0` *)
-      failwith "Unimplemented code generation for boolean constants"
+      //failwith "Unimplemented code generation for boolean constants"
   | Constant (CharVal c, pos) ->
       [ LI (place, int c) ]
 

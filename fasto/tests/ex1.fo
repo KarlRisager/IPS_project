@@ -1,3 +1,0 @@
-fun int main() = //this is a comment
-  write(10+8)
-  //let x = 1 in let y = 2*x in let z = y+1 in write(z)
