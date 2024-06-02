@@ -286,15 +286,16 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
          a meaningful message).
   *)
   | Replicate (n, a, _, pos) ->
-        let n_eval = evalExp(n, vtab, ftab)
-        let a_eval = evalExp(a, vtab, ftab)
-        match n_eval with
-        | IntVal i ->
-            if i >= 0 then
-                  ArrayVal( List.replicate i a_eval ,valueType(a_eval))
-            else 
-                  raise (MyError("N in replicate < 0 "+n, pos))
-      | otherwise -> reportWrongType "N in replicate" Int n_eval pos
+    let n_eval = evalExp(n, vtab, ftab)
+    let a_eval = evalExp(a, vtab, ftab)
+    match n_eval with
+    | IntVal i ->
+        if i >= 0 then
+            ArrayVal (List.replicate i a_eval, valueType a_eval)
+        else 
+            raise (MyError("N in replicate < 0", pos))
+    | _ -> reportWrongType "N in replicate" Int n_eval pos
+
 
   (* TODO project task 2: `filter(p, arr)`
        pattern match the implementation of map:

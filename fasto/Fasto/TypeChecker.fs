@@ -322,7 +322,7 @@ and checkExp  (ftab : FunTable)
     | Replicate (n, a, _, pos) ->
         let (n_type, n_dec) = checkExp ftab vtab n
         let (a_type, a_dec) = checkExp ftab vtab a 
-        if e_type <> Int then
+        if n_type <> Int then
           reportTypeWrong "n in replicate not int" Int n_type pos
         (Array a_type, Replicate(n_dec, a_dec, a_type, pos))
 
@@ -385,7 +385,7 @@ and checkExp  (ftab : FunTable)
         if ne_type <> f_argres_type then
           reportTypesDifferent "operation and start-element types in scan"
                                f_argres_type ne_type pos
-        (Array f_argres_type, Scan (f', e_dec, arr_dec, elem_type, pos))
+        (Array f_argres_type, Scan (f', ne_dec, arr_dec, elem_type, pos))
 
 and checkFunArg  (ftab : FunTable)
                  (vtab : VarTable)

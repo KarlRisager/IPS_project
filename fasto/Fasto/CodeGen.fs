@@ -577,13 +577,12 @@ let rec compileExp  (e      : TypedExp)
   | Replicate (n, a, a_type, pos) ->
       let size_reg = newReg "size"
       let n_code = compileExp n vtable size_reg
-      let a_reg = NewReg "a"
-      let a_code = compileExp a vtable a_Reg
+      let a_reg = newReg "a"
+      let a_code = compileExp a vtable a_reg
       let a_size = getElemSize a_type
 
       let safe_lab = newLab "safe"
       let checksize = [ BGE (size_reg, Rzero, safe_lab)
-                      ; LI (Ra0, line)
                       ; LA (Ra1, "m.BadSize")
                       ; J "p.RuntimeError"
                       ; LABEL (safe_lab)
@@ -705,13 +704,16 @@ let rec compileExp  (e      : TypedExp)
       let loop_beg = newLab "loop_beg"
       let loop_end = newLab "loop_end"
       let res_reg = newReg "res"
+      let acc_reg = newReg "acc"
+      
 
       let arr_code = compileExp arr_exp vtable arr_reg
+      let acc_code = compileExp acc_exp vtable acc_reg
       let header1 = [ LW(size_reg, arr_reg, 0)
                     ; LW(res_reg, arr_reg, 0) ]
 
       
-      let acc_code = compileExp acc_exp vtable place
+      
   
       let elem_size = getElemSize tp
 
@@ -723,12 +725,11 @@ let rec compileExp  (e      : TypedExp)
               ; BGE (i_reg, size_reg, loop_end)
               ; Load elem_size (tmp_reg, arr_reg, 0)
               ; ADDI (arr_reg, arr_reg, elemSizeToInt elem_size)
-              ; applyFunArg(binop, [acc_exp; tmp_reg], vtable, acc_exp, pos)
-              ; MV(res_reg, tmp_reg)
-              ; DDI (res_reg, res_reg, elemSizeToInt elem_size)
+              ] @ applyFunArg(binop, [acc_reg; tmp_reg], vtable, acc_reg, pos)@
+              [ MV(res_reg, tmp_reg)
+              ; ADDI (res_reg, res_reg, elemSizeToInt elem_size)
               ]
       
-      let apply_code =
             
 
       arr_code @ header1 @ dynalloc (size_reg, place, tp)@ acc_code @ loop_code  @
