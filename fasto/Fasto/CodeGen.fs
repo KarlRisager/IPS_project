@@ -595,24 +595,21 @@ let rec compileExp  (e      : TypedExp)
    
       let loop_beg = newLab "loop_beg"
       let loop_end = newLab "loop_end"
-      let loop_header = [ LABEL (loop_beg)
-                        ; BGE (i_reg, size_reg, loop_end)
-                        ]
+      let loop = [ LABEL (loop_beg)
+                   ; BGE (i_reg, size_reg, loop_end)
+                   ; Store a_size (a_reg, addr_reg, 0)      
+                   ; ADDI (addr_reg, addr_reg, elemSizeToInt a_size)
+                   ; ADDI (i_reg, i_reg, 1)
+                   ; J loop_beg
+                   ; LABEL loop_end]
  
-      let loop_replicate   = [ SW (a_reg, addr_reg, 0) ]
-      let loop_footer = [ ADDI (addr_reg, addr_reg, elemSizeToInt a_size)
-                        ; ADDI (i_reg, i_reg, 1)
-                        ; J loop_beg
-                        ; LABEL loop_end
-                        ]
       n_code
        @ a_code
        @ checksize
        @ dynalloc (size_reg, place, a_type)
        @ init_regs
-       @ loop_header
-       @ loop_replicate
-       @ loop_footer
+       @ loop
+
 
   (* TODO project task 2: see also the comment to replicate.
      (a) `filter(f, arr)`:  has some similarity with the implementation of map.
