@@ -66,33 +66,33 @@ TASK 1
 TASK 2                                          
 
     Implement in lexer:
-        - replicate                         None
+        - replicate                         Finished            Andreas                                False
         - filter                            Finished            Andreas                                False
-        - scan                              None                                     
+        - scan                              Finished            Andreas                                False                                     
 
 
     Implement in parser:
-        - replicate                         None
+        - replicate                         Finished            Andreas                                False
         - filter                            Finished            Andreas                                False
-        - scan                              None         
+        - scan                              Finished            Andreas                                False    
 
 
     Implement in interpreter:
-        - replicate                         None
+        - replicate                         Finished            Andreas                                False
         - filter                            Finished            Andreas                                False
-        - scan                              None         
+        - scan                              Finished            Andreas                                False        
 
 
     Implement in Type checker:
-        - replicate                         None
+        - replicate                         Finished            Andreas                                False
         - filter                            Finished            Andreas                                False
-        - scan                              None          
+        - scan                              Finished            Andreas                                False         
 
 
     Implement in RISC-V code generator:
-        - replicate                         None
+        - replicate                         Finished            Andreas                                False
         - filter                            Finished            Andreas                                False
-        - scan                              None           
+        - scan                              Finished            Andreas                                False
 
 
 

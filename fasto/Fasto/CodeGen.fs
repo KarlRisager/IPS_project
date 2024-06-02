@@ -574,8 +574,46 @@ let rec compileExp  (e      : TypedExp)
         If `n` is less than `0` then remember to terminate the program with
         an error -- see implementation of `iota`.
   *)
-  | Replicate (_, _, _, _) ->
-      failwith "Unimplemented code generation of replicate"
+  | Replicate (n, a, a_type, pos) ->
+      let size_reg = newReg "size"
+      let n_code = compileExp n vtable size_reg
+      let a_reg = NewReg "a"
+      let a_code = compileExp a vtable a_Reg
+      let a_size = getElemSize a_type
+
+      let safe_lab = newLab "safe"
+      let checksize = [ BGE (size_reg, Rzero, safe_lab)
+                      ; LI (Ra0, line)
+                      ; LA (Ra1, "m.BadSize")
+                      ; J "p.RuntimeError"
+                      ; LABEL (safe_lab)
+                      ]
+      let addr_reg = newReg "addr"
+      let i_reg = newReg "i"
+      let init_regs = [ ADDI (addr_reg, place, 4)
+                      ; MV (i_reg, Rzero) ]
+
+   
+      let loop_beg = newLab "loop_beg"
+      let loop_end = newLab "loop_end"
+      let loop_header = [ LABEL (loop_beg)
+                        ; BGE (i_reg, size_reg, loop_end)
+                        ]
+ 
+      let loop_replicate   = [ SW (a_reg, addr_reg, 0) ]
+      let loop_footer = [ ADDI (addr_reg, addr_reg, elemSizeToInt a_size)
+                        ; ADDI (i_reg, i_reg, 1)
+                        ; J loop_beg
+                        ; LABEL loop_end
+                        ]
+      n_code
+       @ a_code
+       @ checksize
+       @ dynalloc (size_reg, place, a_type)
+       @ init_regs
+       @ loop_header
+       @ loop_replicate
+       @ loop_footer
 
   (* TODO project task 2: see also the comment to replicate.
      (a) `filter(f, arr)`:  has some similarity with the implementation of map.
@@ -659,8 +697,46 @@ let rec compileExp  (e      : TypedExp)
         the current location of the result iterator at every iteration of
         the loop.
   *)
-  | Scan (_, _, _, _, _) ->
-      failwith "Unimplemented code generation of scan"
+  | Scan (binop, acc_exp, arr_exp, tp, pos) ->
+      let arr_reg  = newReg "arr"   (* address of array *)
+      let size_reg = newReg "size"  (* size of input array *)
+      let i_reg    = newReg "ind_var"   (* loop counter *)
+      let tmp_reg  = newReg "tmp"   (* several purposes *)
+      let loop_beg = newLab "loop_beg"
+      let loop_end = newLab "loop_end"
+      let res_reg = newReg "res"
+
+      let arr_code = compileExp arr_exp vtable arr_reg
+      let header1 = [ LW(size_reg, arr_reg, 0)
+                    ; LW(res_reg, arr_reg, 0) ]
+
+      
+      let acc_code = compileExp acc_exp vtable place
+  
+      let elem_size = getElemSize tp
+
+      let loop_code =
+              [ ADDI (arr_reg, arr_reg, 4)
+              ; ADDI (res_reg, res_reg,4)
+              ; MV (i_reg, Rzero)
+              ; LABEL (loop_beg)
+              ; BGE (i_reg, size_reg, loop_end)
+              ; Load elem_size (tmp_reg, arr_reg, 0)
+              ; ADDI (arr_reg, arr_reg, elemSizeToInt elem_size)
+              ; applyFunArg(binop, [acc_exp; tmp_reg], vtable, acc_exp, pos)
+              ; MV(res_reg, tmp_reg)
+              ; DDI (res_reg, res_reg, elemSizeToInt elem_size)
+              ]
+      
+      let apply_code =
+            
+
+      arr_code @ header1 @ dynalloc (size_reg, place, tp)@ acc_code @ loop_code  @
+         [ ADDI(i_reg, i_reg, 1)
+         ; J loop_beg
+         ; LABEL loop_end
+         ]
+
 
 and applyFunArg ( ff     : TypedFunArg
                 , args   : reg list

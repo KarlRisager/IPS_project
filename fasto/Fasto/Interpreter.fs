@@ -285,8 +285,16 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
          the value of `a`; otherwise raise an error (containing
          a meaningful message).
   *)
-  | Replicate (_, _, _, _) ->
-        failwith "Unimplemented interpretation of replicate"
+  | Replicate (n, a, _, pos) ->
+        let n_eval = evalExp(n, vtab, ftab)
+        let a_eval = evalExp(a, vtab, ftab)
+        match n_eval with
+        | IntVal i ->
+            if i >= 0 then
+                  ArrayVal( List.replicate i a_eval ,valueType(a_eval))
+            else 
+                  raise (MyError("N in replicate < 0 "+n, pos))
+      | otherwise -> reportWrongType "N in replicate" Int n_eval pos
 
   (* TODO project task 2: `filter(p, arr)`
        pattern match the implementation of map:
@@ -315,8 +323,15 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
      Implementation similar to reduce, except that it produces an array
      of the same type and length to the input array `arr`.
   *)
-  | Scan (_, _, _, _, _) ->
-        failwith "Unimplemented interpretation of scan"
+  | Scan (farg, ne, arrexp, tp, pos) ->
+        let farg_ret_type = rtpFunArg farg ftab pos
+        let arr  = evalExp(arrexp, vtab, ftab)
+        let nel  = evalExp(ne, vtab, ftab)
+        match arr with
+          | ArrayVal (lst,tp1) ->
+               let mlst = List.scan(fun acc x -> evalFunArg (farg, vtab, ftab, pos, [acc;x])) nel lst
+               ArrayVal(mlst,farg_ret_type)
+          | otherwise -> reportNonArray "3rd argument of \"scan\"" arr pos
 
   | Read (t,p) ->
         let str = Console.ReadLine()

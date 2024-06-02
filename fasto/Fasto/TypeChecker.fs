@@ -319,8 +319,13 @@ and checkExp  (ftab : FunTable)
         - assuming `a` is of type `t` the result type
           of replicate is `[t]`
     *)
-    | Replicate (_, _, _, _) ->
-        failwith "Unimplemented type check of replicate"
+    | Replicate (n, a, _, pos) ->
+        let (n_type, n_dec) = checkExp ftab vtab n
+        let (a_type, a_dec) = checkExp ftab vtab a 
+        if e_type <> Int then
+          reportTypeWrong "n in replicate not int" Int n_type pos
+        (Array a_type, Replicate(n_dec, a_dec, a_type, pos))
+
 
     (* TODO project task 2: Hint for `filter(f, arr)`
         Look into the type-checking lecture slides for the type rule of `map`
@@ -355,8 +360,32 @@ and checkExp  (ftab : FunTable)
               scan's return type is the same as the type of `arr`,
               while reduce's return type is that of an element of `arr`).
     *)
-    | Scan (_, _, _, _, _) ->
-        failwith "Unimplemented type check of scan"
+    | Scan (f, ne_exp, arr_exp, _, pos) ->
+        let (ne_type  , ne_dec  ) = checkExp ftab vtab ne_exp
+        let (arr_type, arr_dec) = checkExp ftab vtab arr_exp
+        let elem_type =
+            match arr_type with
+              | Array t -> t
+              | _ -> reportTypeWrongKind "third argument of reduce" "array" arr_type pos
+        let (f', f_argres_type) =
+            match checkFunArg ftab vtab pos f with
+              | (f', res, [a1; a2]) ->
+                  if a1 <> a2 then
+                     reportTypesDifferent "argument types of operation in scan"
+                                          a1 a2 pos
+                  if res <> a1 then
+                     reportTypesDifferent "argument and return type of operation in scan"
+                                          a1 res pos
+                  (f', res)
+              | (_, res, args) ->
+                  reportArityWrong "operation in scan" 2 (args,res) pos
+        if elem_type <> f_argres_type then
+          reportTypesDifferent "operation and array-element types in scan"
+                               f_argres_type elem_type pos
+        if ne_type <> f_argres_type then
+          reportTypesDifferent "operation and start-element types in scan"
+                               f_argres_type ne_type pos
+        (Array f_argres_type, Scan (f', e_dec, arr_dec, elem_type, pos))
 
 and checkFunArg  (ftab : FunTable)
                  (vtab : VarTable)
