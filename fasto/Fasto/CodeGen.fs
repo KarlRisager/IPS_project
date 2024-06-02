@@ -645,10 +645,8 @@ let rec compileExp  (e      : TypedExp)
       let tmp_reg = newReg "tmp"
       let wrong = newLab "wrong"
       let count_reg = newReg "count"
-      let res_head = newReg "resH"
 
       let init_regs = [ ADDI (addr_reg, place, 4)
-                      ; ADDI (res_head, place, 0)
                       ; MV (i_reg, Rzero)
                       ; MV (count_reg, Rzero)
                       ; ADDI (elem_reg, arr_reg, 4)
@@ -662,13 +660,13 @@ let rec compileExp  (e      : TypedExp)
     
  
       let loop_filter =
-             [ Load src_size (res_reg, elem_reg, 0)
+            [ Load src_size (res_reg, elem_reg, 0)
              ; ADDI (elem_reg, elem_reg, elemSizeToInt src_size)
              ]
              @ applyFunArg(farg, [res_reg], vtable, tmp_reg, pos)
              @
-             [ BEQ (tmp_reg, Ra0, wrong)
-               Store src_size (res_reg, addr_reg, 0)
+             [ BEQ (tmp_reg, Rzero, wrong)
+             ;  Store src_size (res_reg, addr_reg, 0)
              ; ADDI (addr_reg, addr_reg, elemSizeToInt src_size)
              ; ADDI (count_reg,count_reg,1)
              ]
@@ -678,7 +676,7 @@ let rec compileExp  (e      : TypedExp)
               ;  ADDI (i_reg, i_reg, 1)
               ; J loop_beg
               ; LABEL loop_end
-              ; MV (res_head, count_reg)
+              ; SW (count_reg, place,0)
               ]
       arr_code
        @ get_size

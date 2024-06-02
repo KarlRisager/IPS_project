@@ -316,7 +316,7 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
                                     match (evalFunArg (farg, vtab, ftab, pos, [x]))  with
                                      | BoolVal b -> b
                                      | otherwise -> reportWrongType "wrong input in filter" Bool arr pos ) lst
-                              ArrayVal (mlst, farg_ret_type)
+                              ArrayVal (mlst, tp1)
                         | otherwise -> reportNonArray "2nd argument of \"filter\"" arr pos
           | otherwise -> reportWrongType "result of predicate in filter" Bool arr pos
        
@@ -331,7 +331,7 @@ let rec evalExp (e : UntypedExp, vtab : VarTable, ftab : FunTable) : Value =
         match arr with
           | ArrayVal (lst,tp1) ->
                let mlst = List.scan(fun acc x -> evalFunArg (farg, vtab, ftab, pos, [acc;x])) nel lst
-               ArrayVal(mlst,farg_ret_type)
+               ArrayVal(mlst[1..mlst.Length],tp1)
           | otherwise -> reportNonArray "3rd argument of \"scan\"" arr pos
 
   | Read (t,p) ->
