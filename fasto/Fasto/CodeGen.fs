@@ -704,34 +704,31 @@ let rec compileExp  (e      : TypedExp)
 
       let arr_code = compileExp arr_exp vtable arr_reg
       let acc_code = compileExp acc_exp vtable acc_reg
-      let header1 = [ LW(size_reg, arr_reg, 0)
-                    ; LW(res_reg, arr_reg, 0) ]
+      let get_size = [LW(size_reg, arr_reg, 0)]
+      let header1 = [ ADDI (arr_reg, arr_reg, 4)
+                    ; ADDI (res_reg, place,4)
+                    ; MV (i_reg, Rzero)]
 
       
       
   
       let elem_size = getElemSize tp
 
-      let loop_code =
-              [ ADDI (arr_reg, arr_reg, 4)
-              ; ADDI (res_reg, res_reg,4)
-              ; MV (i_reg, Rzero)
-              ; LABEL (loop_beg)
+      let loop_code = 
+              [ LABEL (loop_beg)
               ; BGE (i_reg, size_reg, loop_end)
               ; Load elem_size (tmp_reg, arr_reg, 0)
               ; ADDI (arr_reg, arr_reg, elemSizeToInt elem_size)
               ] @ applyFunArg(binop, [acc_reg; tmp_reg], vtable, acc_reg, pos)@
-              [ MV(res_reg, tmp_reg)
+              [ Store elem_size (acc_reg, res_reg, 0)
               ; ADDI (res_reg, res_reg, elemSizeToInt elem_size)
-              ]
+              ;ADDI(i_reg, i_reg, 1)
+              ; J loop_beg
+              ; LABEL loop_end]
       
             
 
-      arr_code @ header1 @ dynalloc (size_reg, place, tp)@ acc_code @ loop_code  @
-         [ ADDI(i_reg, i_reg, 1)
-         ; J loop_beg
-         ; LABEL loop_end
-         ]
+      arr_code @get_size @ dynalloc (size_reg, place, tp)@ header1 @ acc_code @ loop_code  
 
 
 and applyFunArg ( ff     : TypedFunArg
