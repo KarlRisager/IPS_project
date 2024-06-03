@@ -1,1 +1,0 @@
-Interpreter error: Bad type for argument x of function write_int_arr: expected [int], but got [bool] ({ 0, 16, 64, 144 }) at line 13, column 6
