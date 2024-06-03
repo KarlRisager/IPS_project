@@ -366,7 +366,7 @@ and checkExp  (ftab : FunTable)
         let elem_type =
             match arr_type with
               | Array t -> t
-              | _ -> reportTypeWrongKind "third argument of reduce" "array" arr_type pos
+              | _ -> reportTypeWrongKind "third argument of scan" "array" arr_type pos
         let (f', f_argres_type) =
             match checkFunArg ftab vtab pos f with
               | (f', res, [a1; a2]) ->
